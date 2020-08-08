@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import com.anz.account.data.TransactionRepository;
 import com.anz.account.shared.TransactionDto;
 
 
+@Slf4j
 @Service
 public class TransactionServiceImpl implements TransactionService{
 
@@ -26,7 +28,8 @@ public class TransactionServiceImpl implements TransactionService{
 	
 	@Override
 	public List<TransactionDto> getTransactionByAccountNumber(String accountNumber) {
-		
+
+		log.info("inside TransactionServiceImpl.getTransactionByAccountNumber()");
 		List<TransactionEntity> entities = transactionRepository.findByAccountNumber(accountNumber);
 		
 		

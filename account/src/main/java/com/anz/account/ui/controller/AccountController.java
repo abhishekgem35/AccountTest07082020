@@ -5,8 +5,6 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -30,12 +28,14 @@ import com.anz.account.ui.model.CreateAccountResponseModel;
 import com.anz.account.ui.model.TransactionRequestModel;
 import com.anz.account.ui.model.TransactionResponseModel;
 
+import lombok.extern.slf4j.Slf4j;
 
+
+@Slf4j
 @RestController
 @RequestMapping("/")
 public class AccountController {
 	
-	private final Logger LOG = LoggerFactory.getLogger(getClass());
 	
 	@Autowired
 	AccountsService accountsService;	
@@ -43,9 +43,10 @@ public class AccountController {
 	@Autowired
 	TransactionService transactionService;
 	
-	@PostMapping
+	@PostMapping(value="/createAccount", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<CreateAccountResponseModel> createAccount(@RequestBody CreateAccountRequestModel accountDetails) {
-		
+
+		log.info("inside AccountController.createAccount()");
 		ModelMapper modelMapper = new ModelMapper();
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		
@@ -58,9 +59,11 @@ public class AccountController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(returnValue);
 	}
 	
-	@PutMapping
+	@PutMapping(value="/createTransaction", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<TransactionResponseModel> updateAccount(@RequestBody TransactionRequestModel transactionDetails) {
-		
+
+		log.info("inside AccountController.updateAccount()");
+
 		ModelMapper modelMapper = new ModelMapper();
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		
@@ -76,7 +79,9 @@ public class AccountController {
 	
 	@GetMapping(value="/transactions/{accountNumber}", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<List<TransactionResponseModel>> getTransactions(@PathVariable("accountNumber") String accountNumber){
-		
+
+		log.info("inside AccountController.getTransactions()");
+
 		if(accountNumber == null) {
 			throw new AccountServiceException("Account Number is NULL");
 		}
@@ -96,7 +101,9 @@ public class AccountController {
 	
 	@GetMapping(value="/account/{accountNumber}", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<AccountResponseModel> getAccount(@PathVariable("accountNumber") String accountNumber){
-		
+
+		log.info("inside AccountController.getAccount()");
+
 		if(accountNumber == null) {
 			throw new AccountServiceException("Account Number is NULL");
 		}
@@ -114,6 +121,9 @@ public class AccountController {
 	
 	@GetMapping(value="/accounts", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<List<AccountResponseModel>> geAllAccounts(){
+
+		log.info("inside AccountController.geAllAccounts()");
+
 		List<AccountsDto> accountsDtoList = accountsService.getAllAccounts();
 		
 		List<AccountResponseModel> returnValue = accountsDtoList.stream().map(accountsDto -> new ModelMapper().map(accountsDto, AccountResponseModel.class)).collect(Collectors.toList());

@@ -13,8 +13,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 // Table and Column for the RDBMS 
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Document(collection="accounts")
 public class AccountEntity implements Serializable {
@@ -42,51 +49,6 @@ public class AccountEntity implements Serializable {
 	
 	private Double accountBalance;
 	
-	
-	public BigInteger getId() {
-		return id;
-	}
-	public void setId(BigInteger id) {
-		this.id = id;
-	}
-	
-	public String getAccountNumber() {
-		return accountNumber;
-	}
-	public void setAccountNumber(String accountNumber) {
-		this.accountNumber = accountNumber;
-	}
-	public String getAccountName() {
-		return accountName;
-	}
-	public void setAccountName(String accountName) {
-		this.accountName = accountName;
-	}
-	public String getAccountType() {
-		return accountType;
-	}
-	public void setAccountType(String accountType) {
-		this.accountType = accountType;
-	}
-	public Date getBalanceDate() {
-		return balanceDate;
-	}
-	public void setBalanceDate(Date balanceDate) {
-		this.balanceDate = balanceDate;
-	}
-	public String getCurrency() {
-		return currency;
-	}
-	public void setCurrency(String currency) {
-		this.currency = currency;
-	}
-	public Double getAccountBalance() {
-		return accountBalance;
-	}
-	public void setAccountBalance(Double accountBalance) {
-		this.accountBalance = accountBalance;
-	}
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

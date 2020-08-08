@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import com.anz.account.data.AccountEntity;
 import com.anz.account.data.AccountsRepository;
 import com.anz.account.shared.AccountsDto;
 
+@Slf4j
 @Service
 public class AccountsServiceImpl implements AccountsService{
 
@@ -20,6 +22,8 @@ public class AccountsServiceImpl implements AccountsService{
 	AccountsRepository accountRepository;
 	
 	public AccountsDto getAccountByAccountId(String accountNumber) {
+
+		log.info("Inside Accounts Service.getAccountByAccountId()");
 		
 		AccountEntity accountsEntity = accountRepository.findByAccountNumber(accountNumber);
 		

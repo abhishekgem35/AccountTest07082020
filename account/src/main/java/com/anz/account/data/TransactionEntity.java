@@ -13,6 +13,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Document(collection="account_transactions")
 public class TransactionEntity implements Serializable {
@@ -40,49 +47,7 @@ public class TransactionEntity implements Serializable {
 
 	private String transactionType;
 
-	public BigInteger getId() {
-		return id;
-	}
-	public void setId(BigInteger id) {
-		this.id = id;
-	}
-	
-	public String getAccountNumber() {
-		return accountNumber;
-	}
-	public void setAccountNumber(String accountNumber) {
-		this.accountNumber = accountNumber;
-	}
-	public String getAccountName() {
-		return accountName;
-	}
-	public void setAccountName(String accountName) {
-		this.accountName = accountName;
-	}
-	public Date getTransactionDate() {
-		return transactionDate;
-	}
-	public void setTransactionDate(Date transactionDate) {
-		this.transactionDate = transactionDate;
-	}
-	public String getCurrency() {
-		return currency;
-	}
-	public void setCurrency(String currency) {
-		this.currency = currency;
-	}
-	public Long getTransactionAmount() {
-		return transactionAmount;
-	}
-	public void setTransactionAmount(Long transactionAmount) {
-		this.transactionAmount = transactionAmount;
-	}
-	public String getTransactionType() {
-		return transactionType;
-	}
-	public void setTransactionType(String transactionType) {
-		this.transactionType = transactionType;
-	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

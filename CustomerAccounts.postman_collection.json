@@ -1,0 +1,87 @@
+{
+	"info": {
+		"_postman_id": "67b54841-1c11-4edc-94c8-3da1cdc532ee",
+		"name": "CustomerAccounts",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CreateTransaction",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"accountNumber\": \"333-11\",\n    \"accountName\": \"Abhishek\",\n    \"transactionType\": \"savings\",\n    \"currency\" : \"USD\",\n    \"transactionAmount\" : \"1200.99\"\n}  \n\n\n"
+				},
+				"url": "127.0.0.1:8102/v1/customer/createTransaction"
+			},
+			"response": []
+		},
+		{
+			"name": "CreateAccount",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"accountNumber\": \"444-11\",\n    \"accountName\": \"Abhishek\",\n    \"transactionType\": \"savings\",\n    \"currency\" : \"USD\",\n    \"accountBalance\" : \"32323.99\"\n}  \n\n\n"
+				},
+				"url": "127.0.0.1:8102/v1/customer/createAccount"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Accounts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:8102/v1/customer/accounts"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Account Transactions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:8102/v1/customer/transactions/234-22",
+				"description": "Get All Transactions of an account number:\nhttp://127.0.0.1:8102/transactions/{accountNumber}\nhttp://127.0.0.1:8102/transactions/234-22"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Account Details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:8102/v1/customer/account/123-11",
+				"description": "Get account details based on account number:\nhttp://127.0.0.1:8102/account/{accountNumber}\nhttp://127.0.0.1:8102/account/123-11"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

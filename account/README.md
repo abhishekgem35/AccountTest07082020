@@ -1,13 +1,13 @@
-#Account Management - Spring Boot App
+###Account Management - Spring Boot App
 
 Sample application to build REST APIs needed to view accounts and subsequent transactions on accounts using [Spring Boot](http://projects.spring.io/spring-boot/).
 
-##Requirements
+###Requirements
 For building and running the application you need:
 - [JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
 - [Maven 3](https://maven.apache.org)
 
-##Built with
+###Built with
 ### Data
 * 	[MongoDB](https://www.mongodb.com) - JSON-like document based database
  

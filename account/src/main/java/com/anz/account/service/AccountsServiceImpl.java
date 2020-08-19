@@ -43,13 +43,10 @@ public class AccountsServiceImpl implements AccountsService{
 
 	@Override
 	public AccountsDto createAccount(AccountsDto accountDetails) {
-		
-		ModelMapper modelMapper = new ModelMapper();
-		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-		
+
 		accountDetails.setBalanceDate(new Date());
 		
-		AccountEntity accountEntity = modelMapper.map(accountDetails, AccountEntity.class);
+		AccountEntity accountEntity = new ModelMapper().map(accountDetails, AccountEntity.class);
 		
 		accountRepository.save(accountEntity);
 		

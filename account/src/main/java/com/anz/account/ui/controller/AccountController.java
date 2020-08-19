@@ -42,19 +42,18 @@ public class AccountController {
 	
 	@Autowired
 	TransactionService transactionService;
+
 	
 	@PostMapping(value="/createAccount", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<CreateAccountResponseModel> createAccount(@RequestBody CreateAccountRequestModel accountDetails) {
 
 		log.info("inside AccountController.createAccount()");
-		ModelMapper modelMapper = new ModelMapper();
-		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-		
+
 		AccountsDto accountsDto = new ModelMapper().map(accountDetails, AccountsDto.class);
 		AccountsDto createdAccount = accountsService.createAccount(accountsDto);
 		
 		
-		CreateAccountResponseModel returnValue = modelMapper.map(createdAccount, CreateAccountResponseModel.class);
+		CreateAccountResponseModel returnValue = new ModelMapper().map(createdAccount, CreateAccountResponseModel.class);
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(returnValue);
 	}
@@ -64,14 +63,12 @@ public class AccountController {
 
 		log.info("inside AccountController.updateAccount()");
 
-		ModelMapper modelMapper = new ModelMapper();
-		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		
 		TransactionDto transactionDto = new ModelMapper().map(transactionDetails, TransactionDto.class);
 		
 		TransactionDto createdTransaction = transactionService.createTransaction(transactionDto);
 		
-		TransactionResponseModel returnValue = modelMapper.map(createdTransaction, TransactionResponseModel.class);
+		TransactionResponseModel returnValue = new ModelMapper().map(createdTransaction, TransactionResponseModel.class);
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(returnValue);
 	}
@@ -92,7 +89,6 @@ public class AccountController {
 			throw new AccountServiceException("No Transaction found for account number " + accountNumber);
 		}
 		
-		//AccountResponseModel returnValue = new ModelMapper().map(accountsDto, AccountResponseModel.class);
 		List<TransactionResponseModel> returnValue = transactions.stream().map(transactionDto -> new ModelMapper().map(transactionDto, TransactionResponseModel.class)).collect(Collectors.toList());
 		
 		return ResponseEntity.status(HttpStatus.OK).body(returnValue);
